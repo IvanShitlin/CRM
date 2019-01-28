@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="salary">
+            <h2><span jhiTranslate="hipsterfoxApp.salary.detail.title">Salary</span> {{salary.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="hipsterfoxApp.salary.mentor">Mentor</span></dt>
+                <dd>
+                    <div *ngIf="salary.mentorId">
+                        <a [routerLink]="['/mentor', salary.mentorId, 'view']">
+                            {{salary.mentorFirstName}} {{salary.mentorLastName}}
+                        </a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.salary.sum">Sum</span></dt>
+                <dd>
+                    <span>{{salary.sum.amount + ' ' + salary.sum.currency}}</span>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.salary.dateFrom">Date From</span></dt>
+                <dd>
+                    <span>{{salary.dateFrom}}</span>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.salary.dateTo">Date To</span></dt>
+                <dd>
+                    <span>{{salary.dateTo}}</span>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.salary.paidDate">Paid Date</span></dt>
+                <dd>
+                    <span>{{salary.paidDate}}</span>
+                </dd>
+            </dl>
+            <div class="form-group">
+                <dt><label class="form-control-label" jhiTranslate="hipsterfoxApp.salary.includedSalaryItems">Included Salary Items</label></dt>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul>
+                            <li *ngFor="let itemOption of includedItems">
+                                {{ itemOption.mentorFirstName }}
+                                {{ itemOption.mentorLastName }}
+                                {{ itemOption.dateFrom | date:'mediumDate'}}
+                                {{ itemOption.dateTo | date:'mediumDate'}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/salary', salary.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

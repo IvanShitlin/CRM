@@ -1,0 +1,78 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="hipsterfoxApp.contract.home.title">Contracts</span>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="contracts">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="agreement.client.lastName"><span jhiTranslate="hipsterfoxApp.contract.agreement">Agreement</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mentorId"><span jhiTranslate="hipsterfoxApp.contract.mentor">Mentor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="startDate"><span jhiTranslate="hipsterfoxApp.contract.startDate">Start Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="endDate"><span jhiTranslate="hipsterfoxApp.contract.endDate">End Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nextPayDate"><span jhiTranslate="hipsterfoxApp.contract.nextPayDate">Next Pay Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="closeType"><span jhiTranslate="hipsterfoxApp.contract.closeType">Close Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="price"><span jhiTranslate="hipsterfoxApp.contract.price">Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mentorRate"><span jhiTranslate="hipsterfoxApp.contract.mentorRate">MentorRate</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let contract of contracts ;trackBy: trackId">
+                <td><a [routerLink]="['/contract', contract.id, 'view' ]">{{contract.id}}</a></td>
+                <td>
+                    <div *ngIf="contract.agreementId">
+                        <a [routerLink]="['../agreement', contract.agreementId , 'view' ]" >{{contract.clientLastName}} - {{contract.courseName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="contract.mentorId">
+                        <a [routerLink]="['../mentor', contract.mentorId , 'view' ]" >{{contract.mentorLastName}} {{contract.mentorFirstName}}</a>
+                    </div>
+                </td>
+                <td>{{contract.startDate | date:'mediumDate'}}</td>
+                <td>{{contract.endDate | date:'mediumDate'}}</td>
+                <td>{{contract.nextPayDate | date:'mediumDate'}}</td>
+                <td jhiTranslate="{{'hipsterfoxApp.CloseType.' + contract.closeType}}">{{contract.closeType}}</td>
+                <td>{{contract.price.amount + ' ' + contract.price.currency}}</td>
+                <td>{{contract.mentorRate.amount + ' ' + contract.mentorRate.currency}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/contract', contract.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/contract', contract.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'contract/'+ contract.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="contracts && contracts.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

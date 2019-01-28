@@ -1,0 +1,28 @@
+
+{
+    "hipsterfoxApp": {
+        "salaryItem" : {
+            "home": {
+                "title": "Salary Items",
+                "createLabel": "Create a new Salary Item",
+                "createOrEditLabel": "Create or edit a Salary Item"
+            },
+            "created": "A new Salary Item is created with identifier {{ param }}",
+            "updated": "A Salary Item is updated with identifier {{ param }}",
+            "deleted": "A Salary Item is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Salary Item {{ id }}?"
+            },
+            "detail": {
+                "title": "Salary Item"
+            },
+            "dateFrom": "Date From",
+            "dateTo": "Date To",
+            "accounted": "Accounted",
+            "mentor": "Mentor",
+            "invoice": "Invoice",
+            "salary": "Salary",
+            "sum": "Sum"
+        }
+    }
+}

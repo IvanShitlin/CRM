@@ -1,0 +1,27 @@
+{
+    "hipsterfoxApp": {
+        "agreement": {
+            "home": {
+                "title": "Agreements",
+                "createLabel": "Create a new Agreement",
+                "createOrEditLabel": "Create or edit a Agreement",
+                "search": "Search for Agreement"
+            },
+            "created": "A new Agreement is created with identifier {{ param }}",
+            "updated": "A Agreement is updated with identifier {{ param }}",
+            "deleted": "A Agreement is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Agreement {{ id }}?"
+            },
+            "detail": {
+                "title": "Agreement"
+            },
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "status": "Status",
+            "client": "Client",
+            "course": "Course",
+            "courseType": "Course Type"
+        }
+    }
+}

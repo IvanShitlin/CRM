@@ -1,0 +1,17 @@
+{
+    "error": {
+        "title": "Помилка!",
+        "http": {
+            "400": "Bad request.",
+            "403": "Ви не авторизовані для доступу до цієї сторінки",
+            "405": "The HTTP verb you used is not supported for this URL.",
+            "500": "Internal server error."
+        },
+        "concurrencyFailure": "Another user modified this data at the same time as you. Your changes were rejected.",
+        "validation": "Validation error on the server.",
+        "agreementDuplicate": "Неможливо створити дублікат угоди.",
+        "Email": "Email: невірний аргумент.",
+        "contractExists": "Активний контракт вже iснyє. Неможливо створити бiльше.",
+        "dateOverlapped": "Обраний період перекриває період існуючого рахунку"
+    }
+}

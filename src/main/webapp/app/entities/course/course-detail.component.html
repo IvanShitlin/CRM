@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="course">
+            <h2><span jhiTranslate="hipsterfoxApp.course.detail.title">Course</span> {{course.id}}</h2>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <jhi-alert-error></jhi-alert-error>
+                    <dl class="row-md jh-entity-details">
+                        <dt><span jhiTranslate="hipsterfoxApp.course.name">Name</span></dt>
+                        <dd>
+                            <span>{{course.name}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.course.image">Image</span></dt>
+                        <dd>
+                            <div *ngIf="course.image">
+                                <a (click)="openFile(course.imageContentType, course.image)">
+                                    <img [src]="'data:' + course.imageContentType + ';base64,' + course.image"
+                                         style="max-width: 100%;" alt="course image"/>
+                                </a>
+                                {{course.imageContentType}}, {{byteSize(course.image)}}
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.course.description">Description</span></dt>
+                        <dd>
+                            <span>{{course.description}}</span>
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="col-md-6">
+                    <dl class="row-md jh-entity-details">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr jhiSort>
+                                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                                <th jhiSortBy="firstName"><span jhiTranslate="hipsterfoxApp.mentor.firstName">First Name</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                                <th jhiSortBy="lastName"><span jhiTranslate="hipsterfoxApp.mentor.lastName">Last Name</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let mentor of course.mentors">
+                                <td><a [routerLink]="['/mentor', mentor.id, 'view' ]">{{mentor.id}}</a></td>
+                                <td>{{ mentor.firstName }}</td>
+                                <td>{{ mentor.lastName }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </dl>
+                </div>
+            </div>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/course', course.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

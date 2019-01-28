@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity SalaryItem.
+    -->
+    <changeSet id="20180627112511-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="mentor_id"
+                                 baseTableName="salary_item"
+                                 constraintName="fk_salary_item_mentor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mentor"/>
+
+        <addForeignKeyConstraint baseColumnNames="invoice_id"
+                                 baseTableName="salary_item"
+                                 constraintName="fk_salary_item_invoice_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="invoice"/>
+
+        <addForeignKeyConstraint baseColumnNames="salary_id"
+                                 baseTableName="salary_item"
+                                 constraintName="fk_salary_item_salary_id"
+                                 onDelete="SET NULL"
+                                 referencedColumnNames="id"
+                                 referencedTableName="salary"/>
+
+    </changeSet>
+</databaseChangeLog>

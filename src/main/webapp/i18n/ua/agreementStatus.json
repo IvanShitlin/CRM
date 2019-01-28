@@ -1,0 +1,14 @@
+{
+    "hipsterfoxApp": {
+        "AgreementStatus": {
+            "null": "",
+            "NEW": "Нова",
+            "WAITING": "У черзі",
+            "ACTIVE": "Діє",
+            "FROZEN": "Заморожена",
+            "COMPLETED": "Закінчена",
+            "REFUSED": "Відмовився",
+            "REJECTED": "Відмовлено"
+        }
+    }
+}

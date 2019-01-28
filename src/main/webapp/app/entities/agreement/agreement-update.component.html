@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-agreement-heading" jhiTranslate="hipsterfoxApp.agreement.home.createOrEditLabel">Create or edit a Agreement</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!agreement.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="agreement.id" readonly/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.agreement.client" for="field_client">Client</label>
+                    <select class="form-control" id="field_client" name="client" [(ngModel)]="agreement.clientId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clientOption.id"
+                                *ngFor="let clientOption of clients; trackBy: trackClientById">
+                            {{clientOption.lastName}} {{clientOption.firstName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.agreement.course" for="field_course">Course</label>
+                    <select class="form-control" id="field_course" name="course" [(ngModel)]="agreement.courseId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="courseOption.id"
+                                *ngFor="let courseOption of courses; trackBy: trackCourseById">
+                            {{courseOption.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.courseType.course-type.title" for="field_courseType">Course Type</label>
+                    </select>
+                    <select class="form-control" id="field_courseType" name="courseType" [(ngModel)]="agreement.courseType">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="courseTypeOption"
+                                *ngFor="let courseTypeOption of courseTypes; trackBy: trackCourseTypeById">
+                            {{courseTypeOption.type}} ({{courseTypeOption.location}})
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.agreement.startDate" for="field_startDate">Start Date</label>
+                    <div class="input-group">
+                        <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="agreement.startDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.agreement.endDate" for="field_endDate">End Date</label>
+                    <div class="input-group">
+                        <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker  #endDateDp="ngbDatepicker" [(ngModel)]="agreement.endDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <dt><span jhiTranslate="hipsterfoxApp.agreement.status">Status</span></dt>
+                    <dd>
+                        <span>{{'hipsterfoxApp.AgreementStatus.NEW' | translate}}</span>
+                    </dd>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+            <div *ngIf="agreement.id">
+                <button type="button" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-contract" [routerLink]="['/agreement', agreement.id, 'contract', 'new']">
+                    <fa-icon [icon]="'plus'"></fa-icon>
+                    <span  jhiTranslate="hipsterfoxApp.contract.home.createLabel">
+                        Create new Contract
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

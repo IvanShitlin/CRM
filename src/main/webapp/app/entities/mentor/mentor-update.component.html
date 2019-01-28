@@ -1,0 +1,130 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-mentor-heading" jhiTranslate="hipsterfoxApp.mentor.home.createOrEditLabel">Create or edit a Mentor</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!mentor.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="mentor.id" readonly/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.mentor.firstName" for="field_firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="field_firstName"
+                        [(ngModel)]="mentor.firstName" required/>
+                    <div [hidden]="!(editForm.controls.firstName?.dirty && editForm.controls.firstName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.firstName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.mentor.lastName" for="field_lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="field_lastName"
+                        [(ngModel)]="mentor.lastName" required/>
+                    <div [hidden]="!(editForm.controls.lastName?.dirty && editForm.controls.lastName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.lastName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.mentor.patronymic" for="field_patronymic">Patronymic</label>
+                    <input type="text" class="form-control" name="patronymic" id="field_patronymic"
+                        [(ngModel)]="mentor.patronymic"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.mentor.phone" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                        [(ngModel)]="mentor.phone"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.mentor.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="mentor.email" required/>
+                    <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.mentor.skype" for="field_skype">Skype</label>
+                    <input type="text" class="form-control" name="skype" id="field_skype"
+                        [(ngModel)]="mentor.skype"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.mentor.country" for="field_country">Country</label>
+                    <input type="text" class="form-control" name="country" id="field_country"
+                        [(ngModel)]="mentor.country"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.mentor.city" for="field_city">City</label>
+                    <input type="text" class="form-control" name="city" id="field_city"
+                        [(ngModel)]="mentor.city"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.mentor.maxStudents" for="field_maxStudents">Max Students</label>
+                    <input type="number" class="form-control" name="maxStudents" id="field_maxStudents"
+                        [(ngModel)]="mentor.maxStudents"/>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <td>Lead courses</td>
+                                <td>Remove</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let course of selectedCourses">
+                                <td>{{ course.name }}</td>
+                                <td>
+                                    <button type="button" (click)="deleteMentor(mentor, course)" class="btn btn-primary">
+                                        <span jhiTranslate="entity.action.delete">Remove</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <td>Not lead courses</td>
+                                <td>Add</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let course of allCourses">
+                                    <tr *ngIf="!isSelected(course)">
+                                        <td>{{ course.name }}</td>
+                                        <td>
+                                            <button type="button" (click)="assignMentor(mentor, course)" class="btn btn-primary">
+                                                <span jhiTranslate="entity.action.add">Add</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

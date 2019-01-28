@@ -1,0 +1,15 @@
+{
+    "hipsterfoxApp": {
+        "debtor" : {
+            "home": {
+                "title": "Debtors",
+                "showLabel": "Show All Debtors"
+            },
+            "paymentDate": "Payment date",
+            "client": "Client",
+            "mentor": "Mentor",
+            "course": "Course",
+            "sum": "Sum"
+        }
+    }
+}

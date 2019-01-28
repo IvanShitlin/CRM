@@ -1,0 +1,33 @@
+
+{
+    "hipsterfoxApp": {
+        "client" : {
+            "home": {
+                "title": "Clients",
+                "createLabel": "Create a new Client",
+                "createOrEditLabel": "Create or edit a Client",
+                "search": "Search for Client"
+            },
+            "created": "A new Client is created with identifier {{ param }}",
+            "updated": "A Client is updated with identifier {{ param }}",
+            "deleted": "A Client is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Client {{ id }}?"
+            },
+            "detail": {
+                "title": "Client"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "patronymic": "Patronymic",
+            "fullName": "Full Name",
+            "phone": "Phone",
+            "email": "Email",
+            "skype": "Skype",
+            "country": "Country",
+            "city": "City",
+            "experience": "Experience",
+            "note": "Note"
+        }
+    }
+}

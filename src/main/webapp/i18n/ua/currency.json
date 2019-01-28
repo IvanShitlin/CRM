@@ -1,0 +1,9 @@
+{
+    "hipsterfoxApp": {
+        "Currency" : {
+            "null": "",
+            "UAH": "UAH",
+            "USD": "USD"
+        }
+    }
+}

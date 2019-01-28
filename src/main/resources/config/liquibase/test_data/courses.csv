@@ -1,0 +1,11 @@
+id;name;image;image_content_type;description;email_template;created_by;last_modified_by
+1;Java;;;Java является одним из самых популярных языков программирования, используемых разработчиками программного обеспечения на сегодняшний день.;javaee;system;system
+2;Front-End;;;Web developer cамая популярная профессия (73%) среди пользователей сервиса StackOverflow в 2017 году. Именно в эту категорию входят все Front-End разработчики.;frontend;system;system
+3;Android;;;В 2017 году в пятерке крупнейших стран Европы доля Android составила 72,3%. В мае 2017 года Google объявила, что за всю историю Android было активировано более 2 млрд Android-устройств.;android;system;system
+4;Automation QA;;;Auto QA engineer обладает навыками программиста и логикой тестировщика одновременно.;qa;system;system
+5;UI / UX Design;;;На данный момент профессия UI/UX дизайнера одна из самых востребованных в IT индустрии. И спрос на нее только возрастает.;ui-ux;system;system
+6;Project Management;;;Используя существующие ресурсы провести заказчика от идеи до реализации в установленный срок — это основная обязанность и ответственность IT Project Manager.;projectManagement;system;system
+7;Java - Project Development;;;Обучение происходит online на одном из реальных проектов.;javaee;system;system
+8;Front-End - Project Development;;;Обучение происходит online на одном из реальных проектов.;frontend;system;system
+9;Android - Project Development;;;Обучение происходит online на одном из реальных проектов.;android;system;system
+10;QA - Project Development;;;Обучение происходит online на одном из реальных проектов.;qa;system;system

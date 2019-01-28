@@ -1,0 +1,30 @@
+
+{
+    "hipsterfoxApp": {
+        "contract" : {
+            "home": {
+                "title": "Contracts",
+                "createLabel": "Створити новий Contract",
+                "createOrEditLabel": "Створити чи редагувати Contract"
+            },
+            "created": "Новий Contract створений з ідентифікатором {{ param }}",
+            "updated": "Contract оновлений з ідентифікатором {{ param }}",
+            "deleted": "Contract видалений з ідентифікатором {{ param }}",
+            "delete": {
+                "question": "Ви впевнені, що хочете видалити Contract {{ id }}?"
+            },
+            "detail": {
+                "title": "Contract"
+            },
+            "startDate": "Дата початку",
+            "endDate": "Кінцева дата",
+            "firstPayDate": "Дата першого платежу",
+            "nextPayDate": "Дата наступного платежу",
+            "closeType": "Причина закриття",
+            "mentor": "Ментор",
+            "price": "Ціна",
+            "mentorRate": "Рейт ментора",
+            "agreement": "Угода"
+        }
+    }
+}

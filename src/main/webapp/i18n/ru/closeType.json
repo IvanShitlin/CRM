@@ -1,0 +1,11 @@
+{
+    "hipsterfoxApp": {
+        "CloseType" : {
+            "null": "",
+            "FROZEN": "Заморожен",
+            "COMPLETED": "Закончен",
+            "REFUSED": "Отказался",
+            "REJECTED": "Отказано"
+        }
+    }
+}

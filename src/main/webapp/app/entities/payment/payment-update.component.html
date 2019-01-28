@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-payment-heading" jhiTranslate="hipsterfoxApp.payment.home.createOrEditLabel">Create or edit a
+                Payment</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!payment.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                           [(ngModel)]="payment.id" readonly/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.payment.invoice" for="field_invoice">Invoice</label>
+                    <select class="form-control" id="field_invoice" name="invoice" [(ngModel)]="payment.invoiceId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="invoiceOption.id"
+                                *ngFor="let invoiceOption of invoices; trackBy: trackInvoiceById">{{invoiceOption.id}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_sum" class="form-control-label"
+                           jhiTranslate="hipsterfoxApp.payment.sum">Sum</label>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <input type="number" class="form-control" required name="amount" id="field_sum"
+                                   [(ngModel)]="payment.sum.amount"/>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <select class="form-control" required name="currency" [(ngModel)]="payment.sum.currency"
+                                    id="field_currency">
+                                <option value="UAH">{{'hipsterfoxApp.Currency.UAH' | translate}}</option>
+                                <option value="USD">{{'hipsterfoxApp.Currency.USD' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.payment.date"
+                           for="field_date">Date</label>
+                    <div class="input-group">
+                        <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker
+                               #dateDp="ngbDatepicker" [(ngModel)]="payment.date"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon
+                                [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving"
+                        class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

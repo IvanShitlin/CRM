@@ -1,0 +1,16 @@
+{
+    "home": {
+        "title": "Добро пожаловать в HipsterFox CRM!",
+        "subtitle": "Это ваша домашняя страница",
+        "logged": {
+            "message": "Вы вошли как пользователь \"{{username}}\"."
+        },
+        "link": {
+            "homepage": "JHipster домашняя страница",
+            "stackoverflow": "JHipster на Stack Overflow",
+            "bugtracker": "JHipster баг трекер",
+            "chat": "JHipster public chat room",
+            "follow": "пользователь @java_hipster в Twitter"
+        }
+    }
+}

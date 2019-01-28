@@ -1,0 +1,11 @@
+{
+    "hipsterfoxApp": {
+        "TaskType": {
+            "null": "",
+            "CONTACT": "CONTACT",
+            "TEST_PERIOD": "TEST_PERIOD",
+            "MENTOR_CHANGE": "MENTOR_CHANGE",
+            "QUESTIONS": "QUESTIONS"
+        }
+    }
+}

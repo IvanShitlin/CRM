@@ -1,0 +1,7 @@
+id;type;location;price_amount;price_currency;mentor_rate_amount;mentor_rate_currency
+1;Mentoring;Ukraine;3500;UAH;1750;UAH
+2;Mentoring;World;140;USD;1750;UAH
+3;Group Training;Ukraine;4000;UAH;2000;UAH
+4;Group Training;World;160;USD;2000;UAH
+5;Individual Programme;Ukraine;7000;UAH;3500;UAH
+6;Individual Programme;World;280;USD;3500;UAH

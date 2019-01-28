@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="mentor">
+            <h2>{{mentor.lastName}} {{mentor.firstName}}</h2>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <jhi-alert-error></jhi-alert-error>
+                    <dl class="row-md jh-entity-details">
+                        <dt><span jhiTranslate="hipsterfoxApp.mentor.firstName">First Name</span></dt>
+                        <dd>
+                            <span>{{mentor.firstName}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.mentor.lastName">Last Name</span></dt>
+                        <dd>
+                            <span>{{mentor.lastName}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.mentor.patronymic">Patronymic</span></dt>
+                        <dd>
+                            <span>{{mentor.patronymic}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.mentor.phone">Phone</span></dt>
+                        <dd>
+                            <span>{{mentor.phone}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.mentor.email">Email</span></dt>
+                        <dd>
+                            <span>{{mentor.email}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.mentor.skype">Skype</span></dt>
+                        <dd>
+                            <span>{{mentor.skype}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.mentor.country">Country</span></dt>
+                        <dd>
+                            <span>{{mentor.country}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.mentor.city">City</span></dt>
+                        <dd>
+                            <span>{{mentor.city}}</span>
+                        </dd>
+                        <dt>Active / Max Students</dt>
+                        <dd>
+                            <span>{{mentor.activeStudents}} / {{mentor.maxStudents}}</span>
+                        </dd>
+                    </dl>
+                    </div>
+                    <div class="col-md-6" *ngIf="courses">
+                        <dl class="row-md jh-entity-details">
+                            <dt><span jhiTranslate="hipsterfoxApp.course.home.title">Courses</span></dt>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr jhiSort>
+                                    <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                                    <th jhiSortBy="name"><span jhiTranslate="hipsterfoxApp.course.name">Name</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let course of courses">
+                                        <td>{{ course.id }}</td>
+                                        <td>{{ course.name }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </dl>
+                    </div>
+                    <button type="submit"
+                            (click)="previousState()"
+                            class="btn btn-info">
+                        <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span
+                        jhiTranslate="entity.action.back"> Back</span>
+                    </button>
+
+                    <button type="button"
+                            [routerLink]="['/mentor', mentor.id, 'edit']"
+                            class="btn btn-primary">
+                        <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span
+                        jhiTranslate="entity.action.edit"> Edit</span>
+                    </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div>
+    <h2>AmoCRM Configuration</h2>
+    <hr/>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" (click)="importAllClients()" [disabled]="isImporting"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'cloud-download-alt'"></fa-icon>
+                <span class="d-none d-md-inline">Import All Clients</span>
+            </button>
+
+            <span *ngIf="importedClients.length != 0" style="padding-left: 20px"> Imported Clients: {{ importedClients }}</span>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" (click)="syncAllClients()" [disabled]="isImporting"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'sync'"></fa-icon>
+                <span class="d-none d-md-inline">Sync All Clients</span>
+            </button>
+
+            <span *ngIf="syncedClients.length != 0"
+                  style="padding-left: 20px"> Synced Clients: {{ syncedClients }}</span>
+        </div>
+    </div>
+
+</div>

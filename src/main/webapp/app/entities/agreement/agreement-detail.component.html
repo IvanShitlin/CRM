@@ -1,0 +1,97 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="agreement">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="float-left"><span jhiTranslate="hipsterfoxApp.agreement.detail.title">Agreement</span> {{agreement.id}}</h2>
+                    <button type="submit" class="btn btn-primary float-right" [routerLink]="['/agreement', agreement.id, 'task', 'new']">
+                        <fa-icon [icon]="'plus'"></fa-icon>
+                        <span class="hidden-sm-down"  jhiTranslate="hipsterfoxApp.task.home.createLabel">
+                        Create new Task
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <jhi-alert-error></jhi-alert-error>
+                    <dl class="row-md jh-entity-details">
+                        <dt><span jhiTranslate="hipsterfoxApp.agreement.client">Client</span></dt>
+                        <dd>
+                            <div *ngIf="agreement.clientId">
+                                <a [routerLink]="['/client', agreement.clientId, 'view']">
+                                    {{agreement.clientLastName}} {{agreement.clientFirstName}}
+                                </a>
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.agreement.course">Course</span></dt>
+                        <dd>
+                            <div *ngIf="agreement.courseId">
+                                <a [routerLink]="['/course', agreement.courseId, 'view']">{{agreement.courseName}}</a>
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.courseType.course-type.title">Course Type</span></dt>
+                        <dd>
+                            <div *ngIf="agreement.courseType.id">
+                                <a [routerLink]="['/course-type', agreement.courseType.id, 'view']">{{agreement.courseType.type}}</a>
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.agreement.startDate">Start Date</span></dt>
+                        <dd>
+                            <span>{{agreement.startDate}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.agreement.endDate">End Date</span></dt>
+                        <dd>
+                            <span>{{agreement.endDate}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.agreement.status">Status</span></dt>
+                        <dd>
+                            <span jhiTranslate="{{'hipsterfoxApp.AgreementStatus.' + agreement.status}}">{{agreement.status}}</span>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="row-md jh-entity-details">
+                        <dt><span jhiTranslate="hipsterfoxApp.contract.home.title">Contracts</span></dt>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr jhiSort>
+                                <th jhiSortBy="id"><span jhiTranslate="global.field.id">Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                <th jhiSortBy="mentorId"><span jhiTranslate="hipsterfoxApp.contract.mentor">Mentor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                <th jhiSortBy="startDate"><span jhiTranslate="hipsterfoxApp.contract.startDate">Start Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                <th jhiSortBy="endDate"><span jhiTranslate="hipsterfoxApp.contract.endDate">End Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                <th jhiSortBy="closeType"><span jhiTranslate="hipsterfoxApp.contract.closeType">Close Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                            </tr>
+                            </thead>
+                            <tbody><tr *ngFor="let contract of contracts">
+                                <td><a [routerLink]="['/contract', contract.id, 'view' ]">{{contract.id}}</a></td>
+                                <td>
+                                    <div *ngIf="contract.mentorId">
+                                        <a [routerLink]="['/mentor', contract.mentorId , 'view' ]" >{{getMentorFullName(contract.mentorId)}}</a>
+                                    </div>
+                                </td>
+                                <td>{{contract.startDate | date:'mediumDate'}}</td>
+                                <td>{{contract.endDate | date:'mediumDate'}}</td>
+                                <td jhiTranslate="{{'hipsterfoxApp.CloseType.' + contract.closeType}}">{{contract.closeType}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </dl>
+                </div>
+            </div>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/agreement', agreement.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

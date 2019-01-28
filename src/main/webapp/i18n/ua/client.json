@@ -1,0 +1,33 @@
+
+{
+    "hipsterfoxApp": {
+        "client" : {
+            "home": {
+                "title": "Клієнти",
+                "createLabel": "Створити нового Клієнта",
+                "createOrEditLabel": "Створити чи редагувати Клієнта",
+                "search": "Знайти Клієнта"
+            },
+            "created": "Новий Клієнт створений з ідентифікатором {{ param }}",
+            "updated": "Клієнт оновлений з ідентифікатором {{ param }}",
+            "deleted": "Клієнт видалений з ідентифікатором {{ param }}",
+            "delete": {
+                "question": "Ви впевнені, що хочете видалити Клієнта {{ id }}?"
+            },
+            "detail": {
+                "title": "Клієнт"
+            },
+            "firstName": "Ім'я",
+            "lastName": "Прізвище",
+            "patronymic": "По батькові",
+            "fullName": "П.І.Б.",
+            "phone": "Телефон",
+            "email": "Email",
+            "skype": "Skype",
+            "country": "Країна",
+            "city": "Місто",
+            "experience": "Досвід",
+            "note": "Примітка"
+        }
+    }
+}

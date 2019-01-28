@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <changeSet id="20181117121110-0" author="lutsik">
+        <createSequence sequenceName="course_type_sequence"
+                        incrementBy="50"
+                        startValue="1000"/>
+    </changeSet>
+
+    <!--
+        Added the entity CourseType.
+    -->
+    <changeSet id="20181117121110-1" author="lutsik">
+        <createTable tableName="course_type">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="location" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="price_amount" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="price_currency" type="varchar(3)">
+                <constraints nullable="false" />
+            </column>
+            <column name="mentor_rate_amount" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="mentor_rate_currency" type="varchar(3)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="payment">
+            <h2><span jhiTranslate="hipsterfoxApp.payment.detail.title">Payment</span> {{payment.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="hipsterfoxApp.payment.invoice">Invoice</span></dt>
+                <dd>
+                    <div *ngIf="payment.invoiceId">
+                        <a [routerLink]="['/invoice', payment.invoiceId, 'view']">{{payment.invoiceId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.payment.sum">Sum</span></dt>
+                <dd>
+                    <span>{{payment.sum.amount + ' ' + payment.sum.currency}}</span>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.payment.date">Date</span></dt>
+                <dd>
+                    <span>{{payment.date}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/payment', payment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

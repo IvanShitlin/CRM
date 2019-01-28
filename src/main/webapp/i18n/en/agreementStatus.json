@@ -1,0 +1,14 @@
+{
+    "hipsterfoxApp": {
+        "AgreementStatus": {
+            "null": "",
+            "NEW": "New",
+            "WAITING": "Waiting",
+            "ACTIVE": "Active",
+            "FROZEN": "Frozen",
+            "COMPLETED": "Completed",
+            "REFUSED": "Refused",
+            "REJECTED": "Rejected"
+        }
+    }
+}

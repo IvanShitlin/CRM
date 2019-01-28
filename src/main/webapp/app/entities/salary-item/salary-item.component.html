@@ -1,0 +1,84 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="hipsterfoxApp.salaryItem.home.title">Salary Items</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-salary-item" [routerLink]="['/salary-item/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="hipsterfoxApp.salaryItem.home.createLabel">
+            Create new Salary Item
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="salaryItems">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="invoiceId"><span jhiTranslate="hipsterfoxApp.salaryItem.invoice">Invoice</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mentorId"><span jhiTranslate="hipsterfoxApp.salaryItem.mentor">Mentor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateFrom"><span jhiTranslate="hipsterfoxApp.salaryItem.dateFrom">Date From</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateTo"><span jhiTranslate="hipsterfoxApp.salaryItem.dateTo">Date To</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sum"><span jhiTranslate="hipsterfoxApp.salaryItem.sum">Sum</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="salaryId"><span jhiTranslate="hipsterfoxApp.salaryItem.salary">Salary</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let salaryItem of salaryItems ;trackBy: trackId">
+                <td><a [routerLink]="['/salary-item', salaryItem.id, 'view' ]">{{salaryItem.id}}</a></td>
+                <td>
+                    <div *ngIf="salaryItem.invoiceId">
+                        <a [routerLink]="['../invoice', salaryItem.invoiceId , 'view' ]" >{{salaryItem.invoiceId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="salaryItem.mentorId">
+                        <a [routerLink]="['../mentor', salaryItem.mentorId , 'view' ]" >{{salaryItem.mentorLastName}} {{salaryItem.mentorFirstName}}</a>
+                    </div>
+                </td>
+                <td>{{salaryItem.dateFrom | date:'mediumDate'}}</td>
+                <td>{{salaryItem.dateTo | date:'mediumDate'}}</td>
+                <td>{{salaryItem.sum.amount + ' ' + salaryItem.sum.currency}}</td>
+                <td>
+                    <div *ngIf="salaryItem.salaryId">
+                        <a [routerLink]="['../salary', salaryItem.salaryId , 'view' ]" >{{salaryItem.salaryId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/salary-item', salaryItem.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/salary-item', salaryItem.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'salary-item/'+ salaryItem.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="salaryItems && salaryItems.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

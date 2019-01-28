@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="money">
+            <h2><span jhiTranslate="hipsterfoxApp.money.detail.title">Money</span> {{money.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="hipsterfoxApp.money.currency">Currency</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'hipsterfoxApp.Currency.' + money.currency}}">{{money.currency}}</span>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.money.amount">Amount</span></dt>
+                <dd>
+                    <span>{{money.amount}}</span>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.money.course">Course</span></dt>
+                <dd>
+                    <div *ngIf="money.courseId">
+                        <a [routerLink]="['/course', money.courseId, 'view']">{{money.courseId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/money', money.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

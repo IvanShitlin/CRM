@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="salaryItem">
+            <h2><span jhiTranslate="hipsterfoxApp.salaryItem.detail.title">Salary Item</span> {{salaryItem.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="hipsterfoxApp.salaryItem.invoice">Invoice</span></dt>
+                <dd>
+                    <div *ngIf="salaryItem.invoiceId">
+                        <a [routerLink]="['/invoice', salaryItem.invoiceId, 'view']">{{salaryItem.invoiceId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.salaryItem.mentor">Mentor</span></dt>
+                <dd>
+                    <div *ngIf="salaryItem.mentorId">
+                        <a [routerLink]="['/mentor', salaryItem.mentorId, 'view']">{{salaryItem.mentorLastName}} {{salaryItem.mentorFirstName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.salaryItem.dateFrom">Date From</span></dt>
+                <dd>
+                    <span>{{salaryItem.dateFrom}}</span>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.salaryItem.dateTo">Date To</span></dt>
+                <dd>
+                    <span>{{salaryItem.dateTo}}</span>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.salaryItem.sum">Sum</span></dt>
+                <dd>
+                    <span>{{salaryItem.sum.amount + ' ' + salaryItem.sum.currency}}</span>
+                </dd>
+                <dt><span jhiTranslate="hipsterfoxApp.salaryItem.salary">Salary</span></dt>
+                <dd>
+                    <div *ngIf="salaryItem.salaryId">
+                        <a [routerLink]="['/salary', salaryItem.salaryId, 'view']">{{salaryItem.salaryId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/salary-item', salaryItem.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

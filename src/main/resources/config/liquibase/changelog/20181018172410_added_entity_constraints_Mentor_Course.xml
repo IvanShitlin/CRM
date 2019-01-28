@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Mentor_Course.
+    -->
+    <changeSet id="20181018172410" author="Beliy Dmitriy">
+
+        <addForeignKeyConstraint baseTableName="mentor_course" baseColumnNames="mentor_id"
+                                 constraintName="fk_mentor_course_mentor_id"
+                                 referencedTableName="mentor"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="mentor_course" baseColumnNames="course_id"
+                                 constraintName="fk_mentor_course_course_id"
+                                 referencedTableName="course"
+                                 referencedColumnNames="id"/>
+
+        <addUniqueConstraint tableName="mentor_course"
+                             columnNames="mentor_id, course_id"/>
+
+    </changeSet>
+</databaseChangeLog>

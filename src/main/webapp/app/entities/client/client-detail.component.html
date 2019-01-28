@@ -1,0 +1,101 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="client">
+            <h2>{{client.lastName}} {{client.firstName}}</h2>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <jhi-alert-error></jhi-alert-error>
+                    <dl class="row-md jh-entity-details">
+                        <dt><span jhiTranslate="hipsterfoxApp.client.firstName">First Name</span></dt>
+                        <dd>
+                            <span>{{client.firstName}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.client.lastName">Last Name</span></dt>
+                        <dd>
+                            <span>{{client.lastName}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.client.patronymic">Patronymic</span></dt>
+                        <dd>
+                            <span>{{client.patronymic}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.client.phone">Phone</span></dt>
+                        <dd>
+                            <span>{{client.phone}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.client.email">Email</span></dt>
+                        <dd>
+                            <span>{{client.email}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.client.skype">Skype</span></dt>
+                        <dd>
+                            <span>{{client.skype}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.client.country">Country</span></dt>
+                        <dd>
+                            <span>{{client.country}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.client.city">City</span></dt>
+                        <dd>
+                            <span>{{client.city}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.client.experience">Experience</span></dt>
+                        <dd>
+                            <span>{{client.experience}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.client.note">Note</span></dt>
+                        <dd>
+                            <span>{{client.note}}</span>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="row-md jh-entity-details">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <dl class="row-md jh-entity-details">
+                                    <dt><span jhiTranslate="hipsterfoxApp.agreement.home.title">Agreements</span></dt>
+                                </dl>
+                            </div>
+                            <div class="col-md-6">
+                                <dl class="row-md jh-entity-details">
+                                    <button type="submit" [routerLink]="['/client', client.id, 'agreement', 'new']" class="btn btn-primary">
+                                        <fa-icon [icon]="'plus'"></fa-icon>&nbsp;<span> Create new Agreement</span>
+                                    </button>
+                                </dl>
+                            </div>
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr jhiSort>
+                                <th jhiSortBy="id"><span jhiTranslate="global.field.id">Id</span></th>
+                                <th jhiSortBy="course"><span jhiTranslate="hipsterfoxApp.agreement.course">Course</span></th>
+                                <th jhiSortBy="status"><span jhiTranslate="hipsterfoxApp.agreement.status">Status</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let agreement of agreements">
+                                <td><a [routerLink]="['/agreement', agreement.id, 'view' ]">{{agreement.id}}</a></td>
+                                <td>{{agreement.courseName}}</td>
+                                <td>{{agreement.status}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </dl>
+                </div>
+            </div>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+            <button type="button"
+                    [routerLink]="['/client', client.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+
+        </div>
+    </div>
+</div>

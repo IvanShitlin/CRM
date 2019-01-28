@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-invoice-heading" jhiTranslate="hipsterfoxApp.invoice.home.createOrEditLabel">Create or edit a Invoice</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!invoice.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                           [(ngModel)]="invoice.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.invoice.contract" for="field_contract">Contract</label>
+                    <input type="text" class="form-control" id="field_contract" name="contract" [(ngModel)]="invoice.contractId" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.invoice.dateFrom" for="field_dateFrom">Date From</label>
+                    <div class="input-group">
+                        <input id="field_dateFrom" type="text" class="form-control" name="dateFrom" ngbDatepicker  #dateFromDp="ngbDatepicker" [(ngModel)]="invoice.dateFrom"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateFromDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.invoice.dateTo" for="field_dateTo">Date To</label>
+                    <div class="input-group">
+                        <input id="field_dateTo" type="text" class="form-control" name="dateTo" ngbDatepicker  #dateToDp="ngbDatepicker" [(ngModel)]="invoice.dateTo"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateToDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="field_sum" class="form-control-label"
+                           jhiTranslate="hipsterfoxApp.invoice.sum">Sum</label>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <input type="number" class="form-control" required name="amount" id="field_sum"
+                                   [(ngModel)]="invoice.sum.amount"/>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <select class="form-control" required name="currency" [(ngModel)]="invoice.sum.currency"
+                                    id="field_currency">
+                                <option value="UAH">{{'hipsterfoxApp.Currency.UAH' | translate}}</option>
+                                <option value="USD">{{'hipsterfoxApp.Currency.USD' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="paymentId" jhiTranslate="hipsterfoxApp.invoice.payment">Payment</label>
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <input type="text" class="form-control" id="paymentId" name="paymentId"
+                                   [(ngModel)]="invoice.paymentId" readonly/>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <div *ngIf="invoice.id && !invoice.paymentId">
+                                <button type="button" id="jh-create-entity"
+                                        class="btn btn-primary float-right jh-create-entity create-payment"
+                                        [routerLink]="['/', { outlets: { popup: 'invoice/'+ invoice.id + '/payment/new'} }]"
+                                        replaceUrl="true"
+                                        queryParamsHandling="merge">
+                                    <fa-icon [icon]="'plus'"></fa-icon>
+                                    <span
+                                        jhiTranslate="hipsterfoxApp.payment.home.createLabel"> Create new Payment </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

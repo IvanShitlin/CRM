@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <changeSet id="99999999999999-1" author="smorodskyi" context="dev, prod">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/clients.csv"
+                  separator=";"
+                  tableName="client">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/mentors.csv"
+                  separator=";"
+                  tableName="mentor">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/courses.csv"
+                  separator=";"
+                  tableName="course">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/course_type.csv"
+                  separator=";"
+                  tableName="course_type">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/agreements.csv"
+                  separator=";"
+                  tableName="agreement">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/contracts.csv"
+                  separator=";"
+                  tableName="contract">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/invoices.csv"
+                  separator=";"
+                  tableName="invoice">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/payments.csv"
+                  separator=";"
+                  tableName="payment">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/salaries.csv"
+                  separator=";"
+                  tableName="salary">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/salary_items.csv"
+                  separator=";"
+                  tableName="salary_item">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/mentors_courses.csv"
+                  separator=";"
+                  tableName="mentor_course">
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-course-type-heading" jhiTranslate="hipsterfoxApp.courseType.home.createOrEditLabel">Create or edit a Course Type</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!courseType.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="courseType.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.courseType.type" for="field_type">Type</label>
+                    <input type="text" class="form-control" name="type" id="field_type"
+                        [(ngModel)]="courseType.type" required/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.courseType.location" for="field_location">Location</label>
+                    <input type="text" class="form-control" name="location" id="field_location"
+                        [(ngModel)]="courseType.location" required/>
+                </div>
+                <div class="form-group">
+                     <label for="field_price" class="form-control-label" jhiTranslate="hipsterfoxApp.courseType.price">Price</label>
+                     <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <input type="number" class="form-control" required name="priceAmount" id="field_price"
+                                   [(ngModel)]="courseType.price.amount"/>
+                        </div>
+                      <div class="col-xs-4 col-sm-4 col-md-4">
+                            <select class="form-control" required name="priceCurrency" [(ngModel)]="courseType.price.currency">
+                                <option value="UAH">{{'hipsterfoxApp.Currency.UAH' | translate}}</option>
+                                <option value="USD">{{'hipsterfoxApp.Currency.USD' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="field_mentor_rate" class="form-control-label"
+                           jhiTranslate="hipsterfoxApp.courseType.mentorRate">Mentor Rate</label>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <input type="number" class="form-control" required name="mentor_rate_amount" id="field_mentor_rate"
+                                   [(ngModel)]="courseType.mentorRate.amount"/>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <select class="form-control" required name="mentor_rate_currency" [(ngModel)]="courseType.mentorRate.currency">
+                                <option value="UAH">{{'hipsterfoxApp.Currency.UAH' | translate}}</option>
+                                <option value="USD">{{'hipsterfoxApp.Currency.USD' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

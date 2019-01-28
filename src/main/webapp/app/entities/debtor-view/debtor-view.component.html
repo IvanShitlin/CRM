@@ -1,0 +1,32 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="hipsterfoxApp.debtor.home.title">Debtors</span>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="debtors">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="clientLastName"><span jhiTranslate="hipsterfoxApp.debtor.client">Client</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="mentorLastName"><span jhiTranslate="hipsterfoxApp.debtor.mentor">Mentor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="courseName"><span jhiTranslate="hipsterfoxApp.debtor.course">Course</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="paymentDate"><span jhiTranslate="hipsterfoxApp.debtor.paymentDate">Payment Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="sum"><span jhiTranslate="hipsterfoxApp.debtor.sum">End Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let debtor of debtors; trackBy: trackId">
+                <td>{{debtor.id}}</td>
+                <td>{{debtor.clientLastName}} {{debtor.clientFirstName}}</td>
+                <td>{{debtor.mentorLastName}} {{debtor.mentorFirstName}}</td>
+                <td>{{debtor.courseName}}</td>
+                <td>{{debtor.paymentDate | date:'mediumDate'}}</td>
+                <td>{{debtor.sum.amount + ' ' + debtor.sum.currency}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

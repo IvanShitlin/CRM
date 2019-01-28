@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="hipsterfoxApp.mentor.home.title">Mentors</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-mentor" [routerLink]="['/mentor/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="hipsterfoxApp.mentor.home.createLabel">
+            Create new Mentor
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="mentors">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="firstName"><span jhiTranslate="hipsterfoxApp.mentor.firstName">First Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lastName"><span jhiTranslate="hipsterfoxApp.mentor.lastName">Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="patronymic"><span jhiTranslate="hipsterfoxApp.mentor.patronymic">Patronymic</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="phone"><span jhiTranslate="hipsterfoxApp.mentor.phone">Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="hipsterfoxApp.mentor.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="skype"><span jhiTranslate="hipsterfoxApp.mentor.skype">Skype</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="country"><span jhiTranslate="hipsterfoxApp.mentor.country">Country</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="city"><span jhiTranslate="hipsterfoxApp.mentor.city">City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="maxStudents">Active/Max Students <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mentor of mentors ; trackBy: trackId">
+                <td><a [routerLink]="['/mentor', mentor.id, 'view' ]">{{mentor.id}}</a></td>
+                <td>{{mentor.firstName}}</td>
+                <td>{{mentor.lastName}}</td>
+                <td>{{mentor.patronymic}}</td>
+                <td>{{mentor.phone}}</td>
+                <td>{{mentor.email}}</td>
+                <td>{{mentor.skype}}</td>
+                <td>{{mentor.country}}</td>
+                <td>{{mentor.city}}</td>
+                <td [ngClass]="[
+                    mentor.activeStudents < mentor.maxStudents ? 'bg-success':
+                    mentor.activeStudents > mentor.maxStudents ? 'bg-danger' : 'bg-warning'
+                ]">
+                    {{mentor.activeStudents}} / {{mentor.maxStudents}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/mentor', mentor.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/mentor', mentor.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'mentor/'+ mentor.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="mentors && mentors.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

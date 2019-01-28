@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112503_added_entity_Client.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112504_added_entity_Mentor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112506_added_entity_Course.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181117121110_added_entity_CourseType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112507_added_entity_Agreement.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112508_added_entity_Contract.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112509_added_entity_Invoice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112510_added_entity_Payment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112511_added_entity_SalaryItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112512_added_entity_Salary.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180907111906_added_entity_AmocrmInfo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181011155520_added_entity_MentorStudentsView.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181018200400_added_entity_DebtorView.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181115161913_added_entity_Task.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181119152220_added_entity_EntityAuditEvent.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+
+    <include file="config/liquibase/changelog/20180627112507_added_entity_constraints_Agreement.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112508_added_entity_constraints_Contract.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112509_added_entity_constraints_Invoice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112510_added_entity_constraints_Payment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112511_added_entity_constraints_SalaryItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180627112512_added_entity_constraints_Salary.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181115161913_added_entity_constraints_Task.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+
+    <include file="config/liquibase/changelog/20181018172409_added_relation_Mentor_Course.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181128155345_added_entity_ClientRegistrationForm.xml" relativeToChangelogFile="false"/>
+
+    <include file="config/liquibase/changelog/99999999999999_test_data.xml" relativeToChangelogFile="false"/>
+</databaseChangeLog>

@@ -1,0 +1,112 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-salary-heading" jhiTranslate="hipsterfoxApp.salary.home.createOrEditLabel">Create or edit a Salary</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <input type="hidden" class="form-control" name="paid" id="field_paid" [(ngModel)]="salary.paid" />
+                <div class="form-group" [hidden]="!salary.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="salary.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.salary.mentor" for="field_mentor">Mentor</label>
+                    <select class="form-control" id="field_mentor" name="mentor" [(ngModel)]="salary.mentorId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="mentorOption.id" *ngFor="let mentorOption of mentors; trackBy: trackMentorById">{{mentorOption.firstName}} {{mentorOption.lastName}} </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.salary.dateFrom" for="field_dateFrom">Date From</label>
+                    <div class="input-group">
+                        <input id="field_dateFrom" type="text" class="form-control" name="dateFrom" ngbDatepicker  #dateFromDp="ngbDatepicker" [(ngModel)]="salary.dateFrom"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateFromDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.salary.dateTo" for="field_dateTo">Date To</label>
+                    <div class="input-group">
+                        <input id="field_dateTo" type="text" class="form-control" name="dateTo" ngbDatepicker  #dateToDp="ngbDatepicker" [(ngModel)]="salary.dateTo"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateToDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.salary.paidDate" for="field_paidDate">Paid Date</label>
+                    <div class="input-group">
+                        <input id="field_paidDate" type="text" class="form-control" name="paidDate" ngbDatepicker  #paidDateDp="ngbDatepicker" [(ngModel)]="salary.paidDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="paidDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.salary.includedSalaryItems">Included Salary Items</label>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul>
+                                <li *ngFor="let itemOption of salary.items">
+                                    {{ itemOption.id }}
+                                    {{ itemOption.mentorFirstName }}
+                                    {{ itemOption.mentorLastName }}
+                                    {{ itemOption.dateFrom | date:'mediumDate'}}
+                                    {{ itemOption.dateTo | date:'mediumDate'}}
+                                    <button type="button" (click)="removeItem(itemOption)" class="btn btn-secondary btn-xs pull-right">
+                                        <fa-icon [icon]="'times'"></fa-icon><span> Remove</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_items" jhiTranslate="hipsterfoxApp.salary.notAccountedSalaryItems">Not Accounted Salary Items</label>
+                    <select class="form-control" id="field_items" name="items" [(ngModel)]="selectedItems" multiple>
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="itemOption" *ngFor="let itemOption of notAccountedItems; trackBy: trackSalaryById">
+                            {{ itemOption.id }}
+                            {{ itemOption.mentorFirstName }}
+                            {{ itemOption.mentorLastName }}
+                            {{ itemOption.dateFrom | date:'mediumDate'}}
+                            {{ itemOption.dateTo | date:'mediumDate'}}
+                        </option>
+                    </select>
+                    <br>
+                    <button type="button" (click)="addItems()" class="btn btn-secondary btn-xs pull-right">
+                        <fa-icon [icon]="'plus'"></fa-icon><span jhiTranslate="entity.action.add">Add</span>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="field_sum" class="form-control-label"
+                           jhiTranslate="hipsterfoxApp.salary.sum">Sum</label>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <input type="number" class="form-control" required name="amount" id="field_sum"
+                                   [(ngModel)]="salary.sum.amount"/>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <dd>
+                                <span>{{ salary.sum.currency }}</span>
+                            </dd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

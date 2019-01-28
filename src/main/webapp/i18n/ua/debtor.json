@@ -1,0 +1,15 @@
+{
+    "hipsterfoxApp": {
+        "debtor" : {
+            "home": {
+                "title": "Боржники",
+                "showLabel": "Показати Боржників"
+            },
+            "paymentDate": "Дата Оплати",
+            "client": "Клієнт",
+            "mentor": "Mentor",
+            "course": "Курс",
+            "sum": "Сума"
+        }
+    }
+}

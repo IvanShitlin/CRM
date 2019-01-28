@@ -1,0 +1,30 @@
+
+{
+    "hipsterfoxApp": {
+        "mentor" : {
+            "home": {
+                "title": "Mentors",
+                "createLabel": "Создать новый Mentor",
+                "createOrEditLabel": "Создать или отредактировать Mentor"
+            },
+            "created": "Новый Mentor создан с идентификатором {{ param }}",
+            "updated": "Mentor обновлен с идентификатором {{ param }}",
+            "deleted": "Mentor удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Mentor {{ id }}?"
+            },
+            "detail": {
+                "title": "Mentor"
+            },
+            "firstName": "Имя",
+            "lastName": "Фамилия",
+            "patronymic": "Patronymic",
+            "phone": "Phone",
+            "email": "Email",
+            "skype": "Skype",
+            "country": "Country",
+            "city": "City",
+            "maxStudents": "Max Students"
+        }
+    }
+}

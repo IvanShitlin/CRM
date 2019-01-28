@@ -1,0 +1,9 @@
+id;first_name;last_name;patronymic;phone;email;skype;country;city;max_students;created_by;last_modified_by
+1;Северус;Снейп;;+44009876252666;snape@hogwarts.mag;snape.severus;UK;London;10;system;system
+2;Долорес;Амбридж;Джейн;+4400987625262;umbridge@minister.mag;umbridge;UK;London;1;system;system
+3;Гораций;Слизнорт;Юджин Флакк;+4400987654333;slughorn@hogwarts.mag;slughorn;UK;London;4;system;system
+4;Римус;Люпин;Джон;+490987654321;lupin@hogwarts.mag;lupin.gryff;UK;Лондон;5;system;system
+5;Минерва;Макгонагалл;;+5555555555555;McGonagall@hogwarts.mag;McGonagall;Uk;Hogwarts;25;system;system
+6;Филиус;Флитвик;;+9849131315616;Flitwick@hogwarts.mag;flitwick.ravenclaw;UK;Hogwarts;12;system;system
+7;Златопуст;Локонс;;+5626451198115;Lockhart@magnificent.mag;magnificent.lockhart;UK;;3;system;system
+8;Помона;Стебль;;+5626111151915;sprout@hogwarts.mag;sprout.hufflepuff;UK;Hogwarts;6;system;system

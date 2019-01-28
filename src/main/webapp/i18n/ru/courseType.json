@@ -1,0 +1,34 @@
+{
+    "hipsterfoxApp": {
+        "courseType": {
+            "home": {
+                "title": "Тип курса",
+                "createLabel": "Создать новый Course Type",
+                "createOrEditLabel": "Создать или отредактировать Course Type"
+            },
+            "created": "Новый Course Type создан с идентификатором {{ param }}",
+            "updated": "Course Type обновлен с идентификатором {{ param }}",
+            "deleted": "Course Type удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Course Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Тип курса"
+            },
+            "type": "Тип",
+            "location": "Локализация",
+            "price": "Цена",
+            "mentorRate": "Рейт ментора",
+            "course-type": {
+                "title": "Тип Курса",
+                "Mentoring": "Менторинг",
+                "Group Training": "Групповое обучение",
+                "Individual Programme": "Индивидуальное обучение"
+            },
+            "course-location": {
+                "Ukraine": "Украина",
+                "World": "Другие страны"
+            }
+        }
+    }
+}

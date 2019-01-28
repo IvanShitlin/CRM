@@ -1,0 +1,12 @@
+{
+    "hipsterfoxApp": {
+        "TaskPriority": {
+            "null": "",
+            "URGENT": "URGENT",
+            "CRITICAL": "CRITICAL",
+            "IMPORTANT": "IMPORTANT",
+            "NORMAL": "NORMAL",
+            "CAN_WAIT": "CAN_WAIT"
+        }
+    }
+}

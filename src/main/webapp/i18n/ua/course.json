@@ -1,0 +1,28 @@
+{
+    "hipsterfoxApp": {
+        "course": {
+            "home": {
+                "title": "Курси",
+                "createLabel": "Створити новий Курс",
+                "createOrEditLabel": "Створити чи редагувати Курс"
+            },
+            "created": "Новий Курс створений з ідентифікатором {{ param }}",
+            "updated": "Курс оновлений з ідентифікатором {{ param }}",
+            "deleted": "Курс видалений з ідентифікатором {{ param }}",
+            "delete": {
+                "question": "Ви впевнені, що хочете видалити Курс {{ id }}?"
+            },
+            "detail": {
+                "title": "Курс"
+            },
+            "name": "Ім'я",
+            "image": "Лого",
+            "description": "Опис",
+            "mentors": "Ментори",
+            "emailTemplate": "Email Шаблон",
+            "actions": {
+                "add": "Додати"
+            }
+        }
+    }
+}

@@ -1,0 +1,112 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-contract-heading" jhiTranslate="hipsterfoxApp.contract.home.createOrEditLabel">Create or edit a Contract</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!contract.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="contract.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.contract.agreement" for="field_agreement">Agreement</label>
+                    <select class="form-control" id="field_agreement" name="agreement" [(ngModel)]="contract.agreementId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="agreementOption.id" *ngFor="let agreementOption of agreements; trackBy: trackAgreementById">{{agreementOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.contract.mentor" for="field_mentor">Mentor</label>
+                    <select class="form-control" id="field_mentor" name="mentor" [(ngModel)]="contract.mentorId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="mentorOption.id" *ngFor="let mentorOption of mentors; trackBy: trackMentorById">{{mentorOption.firstName}} {{mentorOption.lastName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.contract.startDate" for="field_startDate">Start Date</label>
+                    <div class="input-group">
+                        <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="contract.startDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.contract.endDate" for="field_endDate">End Date</label>
+                    <div class="input-group">
+                        <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker  #endDateDp="ngbDatepicker" [(ngModel)]="contract.endDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.contract.firstPayDate" for="field_firstPayDate">First Pay Date</label>
+                    <div class="input-group">
+                        <input id="field_firstPayDate" type="text" class="form-control" name="firstPayDate" ngbDatepicker  #firstPayDateDp="ngbDatepicker" [(ngModel)]="contract.firstPayDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="firstPayDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="hipsterfoxApp.contract.closeType" for="field_closeType">Close Type</label>
+                    <select class="form-control" name="closeType" [(ngModel)]="contract.closeType" id="field_closeType" >
+                        <option value="FROZEN">{{'hipsterfoxApp.CloseType.FROZEN' | translate}}</option>
+                        <option value="COMPLETED">{{'hipsterfoxApp.CloseType.COMPLETED' | translate}}</option>
+                        <option value="REFUSED">{{'hipsterfoxApp.CloseType.REFUSED' | translate}}</option>
+                        <option value="REJECTED">{{'hipsterfoxApp.CloseType.REJECTED' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="id" jhiTranslate="hipsterfoxApp.courseType.course-type.title">Course Type</label>
+                    <input type="text" class="form-control" id="courseType" name="courseType" [(ngModel)]= "courseType" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="field_price" class="form-control-label"
+                           jhiTranslate="hipsterfoxApp.contract.price">Price</label>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <input type="number" class="form-control" required name="priceAmount" id="field_price"
+                                   [(ngModel)]="contract.price.amount"/>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <select class="form-control" required name="priceCurrency" [(ngModel)]="contract.price.currency">
+                                <option value="UAH">{{'hipsterfoxApp.Currency.UAH' | translate}}</option>
+                                <option value="USD">{{'hipsterfoxApp.Currency.USD' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="field_mentor_rate" class="form-control-label"
+                           jhiTranslate="hipsterfoxApp.contract.mentorRate">Mentor Rate</label>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <input type="number" class="form-control" required name="mentor_rate_amount" id="field_mentor_rate"
+                                   [(ngModel)]="contract.mentorRate.amount"/>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <select class="form-control" required name="mentor_rate_currency" [(ngModel)]="contract.mentorRate.currency">
+                                <option value="UAH">{{'hipsterfoxApp.Currency.UAH' | translate}}</option>
+                                <option value="USD">{{'hipsterfoxApp.Currency.USD' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

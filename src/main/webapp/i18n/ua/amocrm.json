@@ -1,0 +1,9 @@
+{
+    "amocrm": {
+        "title": "AmoCRM Configuration",
+        "import": {
+            "title": "Confirm import operation",
+            "question": "Are you sure you want to import all Clients?"
+        }
+    }
+}

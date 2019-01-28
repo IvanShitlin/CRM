@@ -1,0 +1,30 @@
+
+{
+    "hipsterfoxApp": {
+        "mentor" : {
+            "home": {
+                "title": "Mentors",
+                "createLabel": "Create a new Mentor",
+                "createOrEditLabel": "Create or edit a Mentor"
+            },
+            "created": "A new Mentor is created with identifier {{ param }}",
+            "updated": "A Mentor is updated with identifier {{ param }}",
+            "deleted": "A Mentor is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Mentor {{ id }}?"
+            },
+            "detail": {
+                "title": "Mentor"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "patronymic": "Patronymic",
+            "phone": "Phone",
+            "email": "Email",
+            "skype": "Skype",
+            "country": "Country",
+            "city": "City",
+            "maxStudents": "Max Students"
+        }
+    }
+}

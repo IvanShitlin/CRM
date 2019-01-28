@@ -1,0 +1,103 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="contract">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="float-left"><span jhiTranslate="hipsterfoxApp.contract.detail.title">Contract</span> {{contract.id}}</h2>
+                    <div *ngIf="contract.id">
+                        <button type="button" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-invoice" [routerLink]="['/contract', contract.id, 'invoice', 'new']">
+                            <fa-icon [icon]="'plus'"></fa-icon>
+                            <span  jhiTranslate="hipsterfoxApp.invoice.home.createLabel">
+                                Create new Invoice
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <jhi-alert-error></jhi-alert-error>
+                    <dl class="row-md jh-entity-details">
+                        <dt><span jhiTranslate="hipsterfoxApp.contract.agreement">Agreement</span></dt>
+                        <dd>
+                            <div *ngIf="contract.agreementId">
+                                <a [routerLink]="['/agreement', contract.agreementId, 'view']">{{contract.agreementId}}</a>
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.contract.mentor">Mentor</span></dt>
+                        <dd>
+                            <div *ngIf="contract.mentorId">
+                                <a [routerLink]="['/mentor', contract.mentorId, 'view']">{{contract.mentorLastName}} {{contract.mentorFirstName}}</a>
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.contract.startDate">Start Date</span></dt>
+                        <dd>
+                            <span>{{contract.startDate}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.contract.endDate">End Date</span></dt>
+                        <dd>
+                            <span>{{contract.endDate}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.contract.firstPayDate">First Pay Date</span></dt>
+                        <dd>
+                            <span>{{contract.firstPayDate}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.contract.nextPayDate">Next Pay Date</span></dt>
+                        <dd>
+                            <span>{{contract.nextPayDate}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.contract.closeType">Close Type</span></dt>
+                        <dd>
+                            <span jhiTranslate="{{'hipsterfoxApp.CloseType.' + contract.closeType}}">{{contract.closeType}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.contract.price">Price</span></dt>
+                        <dd>
+                            <span>{{contract.price.amount + ' ' + contract.price.currency}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="hipsterfoxApp.contract.mentorRate">Mentor Rate</span></dt>
+                        <dd>
+                            <span>{{contract.mentorRate.amount + ' ' + contract.mentorRate.currency}}</span>
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="col-md-6">
+                    <dl class="row-md jh-entity-details">
+                        <dt><span jhiTranslate="hipsterfoxApp.invoice.home.title">Invoice</span></dt>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr jhiSort>
+                                <th jhiSortBy="id"><span jhiTranslate="global.field.id">Id</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                                <th jhiSortBy="dateFrom"><span jhiTranslate="hipsterfoxApp.invoice.dateFrom">Start Date</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                                <th jhiSortBy="dateTo"><span jhiTranslate="hipsterfoxApp.invoice.dateTo">End Date</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                                <th jhiSortBy="payment"><span jhiTranslate="hipsterfoxApp.invoice.payment">Paid</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let invoice of invoices">
+                                <td><a [routerLink]="['/invoice', invoice.id, 'view' ]">{{invoice.id}}</a></td>
+                                <td>{{invoice.dateFrom | date:'mediumDate'}}</td>
+                                <td>{{invoice.dateTo | date:'mediumDate'}}</td>
+                                <td>{{invoice?.paymentId?"true":"false"}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </dl>
+                </div>
+
+            </div>
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/contract', contract.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
