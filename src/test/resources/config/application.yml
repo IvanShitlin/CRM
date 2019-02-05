@@ -21,12 +21,10 @@ spring:
         type: simple
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:hipsterfox;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        url: jdbc:h2:mem:hipsterfox;DB_CLOSE_DELAY=-1
         name:
         username:
         password:
-        hikari:
-            auto-commit: false
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedH2Dialect
         database: H2
@@ -39,12 +37,10 @@ spring:
                 implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         properties:
             hibernate.id.new_generator_mappings: true
-            hibernate.connection.provider_disables_autocommit: true
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.hbm2ddl.auto: validate
-            hibernate.jdbc.time_zone: UTC
     data:
         elasticsearch:
             properties:
@@ -54,9 +50,9 @@ spring:
         contexts: test
     mail:
         host: smtp.gmail.com
-        port: 465
         username: testfoxcrm@gmail.com
         password: foxcrm777
+        port: 465
     messages:
         basename: i18n/messages
     mvc:
@@ -64,11 +60,15 @@ spring:
             enabled: false
     thymeleaf:
         mode: HTML
-
+        
 
 server:
     port: 10344
     address: localhost
+
+info:
+    project:
+        version: #project.version#
 
 # ===================================================================
 # JHipster specific properties
@@ -115,6 +115,22 @@ application:
         invoice:
             creationCron: "0 0 1 * * ?"
             issueDaysBeforePaymentDate: 5
+        mailPolling:
+            cron: "0 */5 * * * ?"
+    mailChat:
+        mailServer:
+            protocol:
+                imaps:
+                    host: imap.gmail.com
+                    port: 993
+                    timeout: 10000
+                smtp:
+                    host: smtp.gmail.com
+                    port: 587
+                    timeout: 10000
+            username: testfoxcrm@gmail.com
+            password: foxcrm777
+        messagesLimit: 100
 
 
 # amocrm

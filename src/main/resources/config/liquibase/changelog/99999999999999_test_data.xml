@@ -26,9 +26,9 @@
                   tableName="course">
         </loadData>
         <loadData encoding="UTF-8"
-                  file="config/liquibase/test_data/course_type.csv"
+                  file="config/liquibase/test_data/course_prices.csv"
                   separator=";"
-                  tableName="course_type">
+                  tableName="course_price">
         </loadData>
         <loadData encoding="UTF-8"
                   file="config/liquibase/test_data/agreements.csv"
@@ -64,6 +64,26 @@
                   file="config/liquibase/test_data/mentors_courses.csv"
                   separator=";"
                   tableName="mentor_course">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/email_address.csv"
+                  separator=";"
+                  tableName="email_address">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/email_message.csv"
+                  separator=";"
+                  tableName="email_message">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/email_message_to.csv"
+                  separator=";"
+                  tableName="email_message_to">
+        </loadData>
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/test_data/email_message_cc.csv"
+                  separator=";"
+                  tableName="email_message_cc">
         </loadData>
     </changeSet>
 

@@ -1,18 +1,16 @@
 /* tslint:disable max-line-length */
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { of } from 'rxjs';
-import { take, map } from 'rxjs/operators';
 import { CourseService } from 'app/entities/course/course.service';
-import { ICourse, Course } from 'app/shared/model/course.model';
+import { Course } from 'app/shared/model/course.model';
+import { SERVER_API_URL } from 'app/app.constants';
 
 describe('Service Tests', () => {
     describe('Course Service', () => {
         let injector: TestBed;
         let service: CourseService;
         let httpMock: HttpTestingController;
-        let elemDefault: ICourse;
+
         beforeEach(() => {
             TestBed.configureTestingModule({
                 imports: [HttpClientTestingModule]
@@ -20,86 +18,73 @@ describe('Service Tests', () => {
             injector = getTestBed();
             service = injector.get(CourseService);
             httpMock = injector.get(HttpTestingController);
-
-            elemDefault = new Course(0, 'AAAAAAA', 'image/png', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
         });
 
-        describe('Service methods', async () => {
-            it('should find an element', async () => {
-                const returnedFromService = Object.assign({}, elemDefault);
-                service
-                    .find(123)
-                    .pipe(take(1))
-                    .subscribe(resp => expect(resp).toMatchObject({ body: elemDefault }));
+        describe('Service methods', () => {
+            it('should call correct URL', () => {
+                service.find(123).subscribe(() => {});
 
                 const req = httpMock.expectOne({ method: 'GET' });
-                req.flush(JSON.stringify(returnedFromService));
+
+                const resourceUrl = SERVER_API_URL + 'api/courses';
+                expect(req.request.url).toEqual(resourceUrl + '/' + 123);
             });
 
-            it('should create a Course', async () => {
-                const returnedFromService = Object.assign(
-                    {
-                        id: 0
-                    },
-                    elemDefault
-                );
-                const expected = Object.assign({}, returnedFromService);
-                service
-                    .create(new Course(null))
-                    .pipe(take(1))
-                    .subscribe(resp => expect(resp).toMatchObject({ body: expected }));
+            it('should create a Course', () => {
+                service.create(new Course(null)).subscribe(received => {
+                    expect(received.body.id).toEqual(null);
+                });
+
                 const req = httpMock.expectOne({ method: 'POST' });
-                req.flush(JSON.stringify(returnedFromService));
+                req.flush({ id: null });
             });
 
-            it('should update a Course', async () => {
-                const returnedFromService = Object.assign(
-                    {
-                        name: 'BBBBBB',
-                        image: 'BBBBBB',
-                        description: 'BBBBBB',
-                        emailTemplate: 'BBBBBB'
-                    },
-                    elemDefault
-                );
+            it('should update a Course', () => {
+                service.update(new Course(123)).subscribe(received => {
+                    expect(received.body.id).toEqual(123);
+                });
 
-                const expected = Object.assign({}, returnedFromService);
-                service
-                    .update(expected)
-                    .pipe(take(1))
-                    .subscribe(resp => expect(resp).toMatchObject({ body: expected }));
                 const req = httpMock.expectOne({ method: 'PUT' });
-                req.flush(JSON.stringify(returnedFromService));
+                req.flush({ id: 123 });
             });
 
-            it('should return a list of Course', async () => {
-                const returnedFromService = Object.assign(
-                    {
-                        name: 'BBBBBB',
-                        image: 'BBBBBB',
-                        description: 'BBBBBB',
-                        emailTemplate: 'BBBBBB'
-                    },
-                    elemDefault
-                );
-                const expected = Object.assign({}, returnedFromService);
-                service
-                    .query(expected)
-                    .pipe(
-                        take(1),
-                        map(resp => resp.body)
-                    )
-                    .subscribe(body => expect(body).toContainEqual(expected));
+            it('should return a Course', () => {
+                service.find(123).subscribe(received => {
+                    expect(received.body.id).toEqual(123);
+                });
+
                 const req = httpMock.expectOne({ method: 'GET' });
-                req.flush(JSON.stringify([returnedFromService]));
-                httpMock.verify();
+                req.flush({ id: 123 });
             });
 
-            it('should delete a Course', async () => {
-                const rxPromise = service.delete(123).subscribe(resp => expect(resp.ok));
+            it('should return a list of Course', () => {
+                service.query(null).subscribe(received => {
+                    expect(received.body[0].id).toEqual(123);
+                });
+
+                const req = httpMock.expectOne({ method: 'GET' });
+                req.flush([new Course(123)]);
+            });
+
+            it('should delete a Course', () => {
+                service.delete(123).subscribe(received => {
+                    expect(received.url).toContain('/' + 123);
+                });
 
                 const req = httpMock.expectOne({ method: 'DELETE' });
-                req.flush({ status: 200 });
+                req.flush(null);
+            });
+
+            it('should propagate not found response', () => {
+                service.find(123).subscribe(null, (_error: any) => {
+                    expect(_error.status).toEqual(404);
+                });
+
+                const req = httpMock.expectOne({ method: 'GET' });
+                req.flush('Invalid request parameters', {
+                    status: 404,
+                    statusText: 'Bad Request'
+                });
             });
         });
 

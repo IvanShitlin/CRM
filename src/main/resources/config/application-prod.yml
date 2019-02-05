@@ -30,22 +30,20 @@ spring:
         url: jdbc:postgresql://localhost:5432/hipster_fox_db
         username: hipster_fox
         password: foxminded
-        hikari:
-            auto-commit: false
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL
         show-sql: false
         properties:
             hibernate.id.new_generator_mappings: true
-            hibernate.connection.provider_disables_autocommit: true
             hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: false
             hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.BeanClassLoaderAwareJCacheRegionFactory
     data:
-        jest:
-            uri: http://localhost:9200
+        elasticsearch:
+            cluster-name: hipsterfox
+            cluster-nodes: localhost:9300
     liquibase:
         contexts: prod
     mail:
@@ -57,7 +55,7 @@ spring:
         cache: true
 
 # ===================================================================
-# To enable TLS in production, generate a certificate using:
+# To enable SSL, generate a certificate using:
 # keytool -genkey -alias hipsterfox -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
 #
 # You can also use Let's Encrypt:
@@ -68,8 +66,8 @@ spring:
 # server:
 #    port: 443
 #    ssl:
-#        key-store: classpath:config/tls/keystore.p12
-#        key-store-password: password
+#        key-store: keystore.p12
+#        key-store-password: <your-password>
 #        key-store-type: PKCS12
 #        key-alias: hipsterfox
 #        # The ciphers suite enforce the security by deactivating some old and deprecated SSL cipher, this list was tested against SSL Labs (https://www.ssllabs.com/ssltest/)
@@ -107,8 +105,6 @@ jhipster:
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx:
             enabled: true
-        prometheus:
-            enabled: false #expose metrics via prometheus
         logs: # Reports Dropwizard metrics in the logs
             enabled: false
             report-frequency: 60 # in seconds

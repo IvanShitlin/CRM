@@ -8,9 +8,6 @@ import ru.shitlin.domain.view.DebtorView;
 import ru.shitlin.repository.view.DebtorViewRepository;
 import ru.shitlin.service.view.mapper.DebtorViewMapper;
 import ru.shitlin.service.view.service.DebtorViewService;
-import ru.shitlin.web.rest.ContractResourceIntTest;
-import ru.shitlin.web.rest.InvoiceResourceIntTest;
-import ru.shitlin.web.rest.PaymentResourceIntTest;
 import ru.shitlin.web.rest.TestUtil;
 import ru.shitlin.web.rest.errors.ExceptionTranslator;
 

@@ -20,11 +20,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="course"/>
 
-        <addForeignKeyConstraint baseColumnNames="course_type_id"
-                                 baseTableName="agreement"
-                                 constraintName="fk_agreement_course_type_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="course_type"/>
-
     </changeSet>
 </databaseChangeLog>
